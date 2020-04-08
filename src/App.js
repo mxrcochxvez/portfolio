@@ -6,17 +6,20 @@ import NavBar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 
 import Footer from './components/Footer'
+import Home from './pages/HomePage';
+import About from './pages/AboutPage';
+import Contact from './pages/ContactPage';
 
 class App extends Component {
-  
+
   constructor(props) {
     super(props)
     this.state = {
       title: "Marco Chavez",
       headerLinks: [
-        { title: "Home", path: "/"},
-        { title: "About", path: "/about"},
-        { title: "Content", path: "/contact"}
+        { title: "Home", path: "/" },
+        { title: "About", path: "/about" },
+        { title: "Content", path: "/contact" }
       ],
       home: {
         title: "Building Powerful Web Apps",
@@ -32,7 +35,7 @@ class App extends Component {
     }
   }
 
-  render(){
+  render() {
     return (
       <Router>
         <Container className="p-0" fluid={true}>
@@ -48,6 +51,10 @@ class App extends Component {
               </Nav>
             </NavBar.Collapse>
           </NavBar>
+
+          <Route exact path="/" render={() => <Home title={this.state.home.title} subtitle={this.state.home.subTitle} text={this.state.home.text} />} />
+          <Route path="/about" render={() => <About title={this.state.about.title} />} />
+          <Route path="/contact" render={() => <Contact title={this.state.contact.title} />} />
 
           <Footer />
         </Container>
