@@ -30,7 +30,7 @@ class App extends Component {
         title: "About Me"
       },
       contact: {
-        title: "Let's Talk"
+        title: "Let's Have Some Coffee?"
       }
     }
   }
