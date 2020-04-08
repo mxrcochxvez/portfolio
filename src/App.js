@@ -52,7 +52,7 @@ class App extends Component {
             </NavBar.Collapse>
           </NavBar>
 
-          <Route exact path="/" render={() => <Home title={this.state.home.title} subtitle={this.state.home.subTitle} text={this.state.home.text} />} />
+          <Route exact path="/" render={() => <Home title={this.state.home.title} subTitle={this.state.home.subTitle} text={this.state.home.text} />} />
           <Route path="/about" render={() => <About title={this.state.about.title} />} />
           <Route path="/contact" render={() => <Contact title={this.state.contact.title} />} />
 
