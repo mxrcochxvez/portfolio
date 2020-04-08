@@ -23,7 +23,7 @@ class App extends Component {
       ],
       home: {
         title: "Building Powerful Web Apps",
-        subTitle: "Apps to keep your business moving forwards.",
+        subTitle: "to keep your business moving forwards.",
         text: "See what I am working on."
       },
       about: {

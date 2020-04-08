@@ -13,7 +13,7 @@ function Footer() {
                         Marco Chavez
                     </Col>
                     <Col className="p-0 d-flex justify-content-end" md={3}>
-                        This site was created by Marco Chavez
+                        created by Marco Chavez
                     </Col>
                 </Row>
             </Container>
