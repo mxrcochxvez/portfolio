@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+    padding: 0;
+    color: #330008;
+}
+
+a {
+    color: red;
+    text-decoration: none;
+}

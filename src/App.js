@@ -1,17 +1,18 @@
 import React from 'react';
+import Hero from './components/Hero';
+import Layout from './components/Layout';
+import Navigation from './components/Navigation';
+import About from './pages/About';
+import Portfolio from './pages/Portolio';
 
 function App() {
   return (
-    <div style={{ textAlign: 'center' }}>
-      <header>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Navigation />
+      <Hero title="My name is Marco Chavez" subtitle="and I am a Software Developer" />
+      <About />
+      <Portfolio />
+    </Layout>
   );
 }
 
