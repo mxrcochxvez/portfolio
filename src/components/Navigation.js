@@ -7,7 +7,7 @@ const Navbar = styled.nav`
     padding: 1px 1rem;
     color: #E61300;
     margin: .5rem;
-    box-shadow: 0 2px 23px 0 rgba(112,81,239,.1);
+    box-shadow: 0 2px 23px 0 #222222;
     display: inline-block;
     `
 

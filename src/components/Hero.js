@@ -13,7 +13,7 @@ const HeroContainer = styled.div`
     }
 
     p {
-        color: #660900;
+        color: #E45858;
         font-size: 2rem;
     }
 `

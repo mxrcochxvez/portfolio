@@ -2,6 +2,8 @@ body {
     margin: 0;
     padding: 0;
     color: #330008;
+    background-color: #303030;
+    color: #ffe8e8;
 }
 
 @media screen and (min-width: 700px) {
