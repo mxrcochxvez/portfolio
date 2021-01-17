@@ -16,6 +16,14 @@ const PortfolioContainer = styled.div`
         padding: 1rem 0 0 0;
     }
 
+    .card-container {
+        @media(min-width: 1012px) {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+    }
+
     .card {
         box-shadow: 0 2px 23px 0 rgba(112,81,239,.1);
         text-align: center;
@@ -65,44 +73,46 @@ export default function Portfolio() {
                     delay: 1
                 }}
             >My Portfolio</motion.p>
-            <motion.div
-                animate={{
-                    opacity: [0, 1]
-                }}
-                transition={{
-                    delay: 1.5
-                }}
-                className="card"
-            >
-                <h4>Work</h4>
-                <ul>
-                    <li><strong style={{ color: '#660900' }}>OrdrSlip</strong>: Nov. 2020 - Present</li>
-                    <li><strong style={{ color: '#660900' }}>Woz U</strong>: Oct. 2019 - Present</li>
-                </ul>
-                <a className="button" href="https://www.linkedin.com/in/marco-chavez-jr-334514b4/" target="__blank">Visit My Linked In</a>
-            </motion.div>
-            <motion.div
-                animate={{
-                    opacity: [0, 1]
-                }}
-                transition={{
-                    delay: 1.5
-                }}
-                className="card"
-            >
-                <h4>Skills</h4>
-                <ul>
-                    <li><strong style={{ color: '#660900' }}>HTML, CSS</strong>: Expert</li>
-                    <li><strong style={{ color: '#660900' }}>JavaScript</strong>: Advanced</li>
-                    <li><strong style={{ color: '#660900' }}>React</strong>: Advanced</li>
-                    <li><strong style={{ color: '#660900' }}>Angular</strong>: Advanced</li>
-                    <li><strong style={{ color: '#660900' }}>SQL</strong>: Proficient</li>
-                    <li><strong style={{ color: '#660900' }}>NoSQL</strong>: Proficient</li>
-                    <li><strong style={{ color: '#660900' }}>Deployment (AWS, DGO)</strong>: Proficient</li>
-                    <li><strong style={{ color: '#660900' }}>Python</strong>: Proficient</li>
-                </ul>
-                <a className="button" href="https://www.github.com/mxrcochxvez" target="__blank">Visit My GitHub</a>
-            </motion.div>
+            <div className="card-container">
+                <motion.div
+                    animate={{
+                        opacity: [0, 1]
+                    }}
+                    transition={{
+                        delay: 1.5
+                    }}
+                    className="card"
+                >
+                    <h4>Work</h4>
+                    <ul>
+                        <li><strong style={{ color: '#660900' }}>OrdrSlip</strong>: Nov. 2020 - Present</li>
+                        <li><strong style={{ color: '#660900' }}>Woz U</strong>: Oct. 2019 - Present</li>
+                    </ul>
+                    <a className="button" href="https://www.linkedin.com/in/marco-chavez-jr-334514b4/" target="__blank">Visit My Linked In</a>
+                </motion.div>
+                <motion.div
+                    animate={{
+                        opacity: [0, 1]
+                    }}
+                    transition={{
+                        delay: 1.5
+                    }}
+                    className="card"
+                >
+                    <h4>Skills</h4>
+                    <ul>
+                        <li><strong style={{ color: '#660900' }}>HTML, CSS</strong>: Expert</li>
+                        <li><strong style={{ color: '#660900' }}>JavaScript</strong>: Advanced</li>
+                        <li><strong style={{ color: '#660900' }}>React</strong>: Advanced</li>
+                        <li><strong style={{ color: '#660900' }}>Angular</strong>: Advanced</li>
+                        <li><strong style={{ color: '#660900' }}>SQL</strong>: Proficient</li>
+                        <li><strong style={{ color: '#660900' }}>NoSQL</strong>: Proficient</li>
+                        <li><strong style={{ color: '#660900' }}>Deployment (AWS, DGO)</strong>: Proficient</li>
+                        <li><strong style={{ color: '#660900' }}>Python</strong>: Proficient</li>
+                    </ul>
+                    <a className="button" href="https://www.github.com/mxrcochxvez" target="__blank">Visit My GitHub</a>
+                </motion.div>
+            </div>
         </PortfolioContainer>
     )
 }
