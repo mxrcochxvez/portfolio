@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-function App() {
+function App(): JSX.Element {
   return (
     <Fragment>
       <div className="w-screen h-screen bg-blue-600 text-white flex flex-col items-center justify-center">
