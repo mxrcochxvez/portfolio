@@ -3,7 +3,7 @@ import CallToAction from "../components/CallToAction";
 import Hero from "../components/Hero";
 import MyLinks from "../components/MyLinks";
 
-export default function Home() {
+export default function Home(): JSX.Element {
   return (
     <div>
       <div className="md:grid md:grid-cols-2">
