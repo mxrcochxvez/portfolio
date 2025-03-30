@@ -1,5 +1,5 @@
 <template>
-  <main class="px-4 text-white">
+  <main class="px-4 bg-violet-950 text-white">
     <Navbar />
     <slot />
   </main>
@@ -8,9 +8,3 @@
 <script lang="ts" setup>
   import Navbar from '~/components/navbar.vue';
 </script>
-
-<style>
-  * {
-    background-color: rgb(46 16 101);
-  }
-</style>
