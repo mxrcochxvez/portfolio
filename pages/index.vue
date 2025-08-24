@@ -1,15 +1,61 @@
 <template>
 	<section :class="[$style.headingSection, 'bg-violet-950 text-white']">
-		<!-- <img :class="$style.bannerImage" :src="bannerImageUrl" alt="Strategy. Story. Then Sales." /> -->
-		 <div>
-			With over <CountUp class="text-xl underline" :start="0" :end="6" :step-ms="300" /> years in the industry
-		 </div>
+		<div class="mx-auto max-w-6xl px-4 py-12 grid gap-10 md:grid-cols-12 items-start">
+			<div class="md:col-span-7 space-y-5">
+			<h1 class="text-3xl font-bold tracking-tight">Strategy. Story. Then Sales.</h1>
 
-		<div>
-			<p>In jobs related to ecommerce, SaaS, and internal tooling. I am an expert in accessibility, performance, and bringing your projects to the finish line.</p>
-			<a class="text-sm underline underline-offset-4 hidden md:inline-block" href="#about-me">Read More...</a>
+			<p class="text-lg text-white/90">
+				With over
+				<CountUp class="text-xl underline" :start="0" :end="6" :step-ms="300" />
+				+ years in the industry.
+			</p>
+
+			<p class="text-white/80">
+				Ecommerce, SaaS, and internal tooling specialist. Accessibility and performance focused. I ship work that moves KPIs.
+			</p>
+
+			<div class="flex flex-wrap gap-3 pt-2">
+				<a href="#contact" class="inline-flex items-center rounded-xl px-4 py-2 font-medium bg-violet-800/40 text-white hover:bg-violet-800/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50">
+				Book a 15-min call
+				</a>
+			</div>
+
+			<!-- Fast proof: animated metrics -->
+			<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
+				<div>
+				<div class="text-3xl font-semibold tabular-nums">
+					<CountUp :start="0" :end="6" :step-ms="120" />+
+				</div>
+				<div class="text-sm text-white/70">Years experience</div>
+				</div>
+				<div>
+				<div class="text-3xl font-semibold tabular-nums">
+					<CountUp :start="0" :end="24" :step-ms="60" />+
+				</div>
+				<div class="text-sm text-white/70">Projects shipped</div>
+				</div>
+				<div>
+				<div class="text-3xl font-semibold tabular-nums">
+					<CountUp :start="0" :end="18" :step-ms="80" />+
+				</div>
+				<div class="text-sm text-white/70">A11y audits/fixes</div>
+				</div>
+				<div>
+				<div class="text-3xl font-semibold tabular-nums">
+					<CountUp :start="0" :end="95" :step-ms="15" />%
+				</div>
+				<div class="text-sm text-white/70">Avg Lighthouse Perf</div>
+				</div>
+			</div>
+
+			<a class="text-sm underline underline-offset-4 hidden md:inline-block" href="#about-me">Read more…</a>
+			</div>
+
+			<div class="md:col-span-5 space-y-5">
+			</div>
 		</div>
-	</section>
+		</section>
+
 
 	<section id="about-me" :class="[$style.aboutMeSection, 'bg-white text-black']">
 		<Heading :level="2">About Me</Heading>
