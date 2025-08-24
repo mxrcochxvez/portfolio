@@ -24,12 +24,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'pnpm'   # still caches the PNPM store
+          cache: 'pnpm'
 
-      - name: Enable Corepack (uses package.json#packageManager)
+      # 👇 Enable Corepack so pnpm from package.json is installed
+      - name: Enable Corepack and install pnpm
         run: |
           corepack enable
-          corepack install   # installs pnpm@<exact version from package.json>
+          corepack prepare pnpm@latest --activate
+          pnpm --version   # 👈 sanity check
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -39,14 +41,19 @@ jobs:
         with:
           static_site_generator: nuxt
 
-      - name: Generate static site
+      - name: Build static site
         run: pnpm run generate
 
-      # Nuxt 3 -> .output/public ; Nuxt 2 -> dist
-      - name: Upload artifact (Nuxt 3)
+      # ⚡ Adjust output dir depending on Nuxt version:
+      - name: Upload artifact (Nuxt 3 default)
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./.output/public
+
+      # For Nuxt 2 use instead:
+      # with:
+      #   path: ./dist
+
   deploy:
     environment:
       name: github-pages
