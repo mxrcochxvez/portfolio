@@ -18,52 +18,37 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # Install PNPM to PATH (must match package.json exactly)
+      # PNPM (matches package.json#packageManager if you pinned it)
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
         with:
           version: 9.7.1
           run_install: false
 
-      # Node (with pnpm cache)
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
 
-      # Sanity check: ensure pnpm is available
-      - name: Verify pnpm
-        run: |
-          which pnpm
-          pnpm --version
-
-      - name: Install dependencies
+      - name: Install deps
         run: pnpm install --frozen-lockfile
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          static_site_generator: nuxt
+      # Build for GitHub Pages with the correct base
+      - name: Build (Nuxt 3, GitHub Pages preset)
+        env:
+          # If using a project page: https://<user>.github.io/<repo>/
+          # This ensures assets load from /<repo>/_nuxt/*
+          NUXT_APP_BASE_URL: "/${{ github.event.repository.name }}/"
+        run: pnpm exec nuxt build --preset github_pages
 
-      - name: Build static site
-        run: pnpm run generate
-
-      # 👇 Pick ONE based on your Nuxt version
-      # Nuxt 3 default:
-      - name: Upload artifact (Nuxt 3)
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./.output/public
 
-      # Nuxt 2:
-      # - name: Upload artifact (Nuxt 2)
-      #   uses: actions/upload-pages-artifact@v3
-      #   with:
-      #     path: ./dist
 
   deploy:
     environment:
