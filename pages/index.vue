@@ -11,7 +11,7 @@
 	<section id="about-me" :class="[$style.aboutMeSection, 'bg-white text-black']">
 		<Heading :level="2">About Me</Heading>
 
-		<div class="flex flex-col items-center gap-4 pt-4 md:flex-row md:gap-8">
+		<div class="flex flex-col items-center gap-4 pt-4 md:flex-row md:gap-8 md:px-56">
 			<div class="flex flex-col items-center">
 				<img :class="$style.myImage" :src="myImageUrl" alt="" />
 				<Heading :level="3" class="mt-4 md:text-sm">Marco Chavez</Heading>
@@ -22,23 +22,37 @@
 			</div>
 		</div>
 	</section>
+
+	<section :class="[$style.workHistorySection, 'bg-purple-200']">
+		<Heading :level="2">Work History</Heading>
+
+		<WorkExperiencesCards :experiences="experiences" />
+	</section>
 </template>
 
 <script lang="ts" setup>
+	import { useWorkExperiences } from '~/constants/work-experiences';
+
+	const experiences = useWorkExperiences();
+
 	const bannerImageUrl = 'https://i.imgur.com/LcukdRk.png';
 	const myImageUrl = 'https://media.licdn.com/dms/image/v2/D5635AQGJhnw3xPTA0w/profile-framedphoto-shrink_400_400/B56ZjSt5n1IEAg-/0/1755881905006?e=1756594800&v=beta&t=kdr1zvPaTrKHmcH2J9XQ39_j9n7NpvDsZ8KYtkYpIBg';
 </script>
 
 <style lang="scss" module>
+	@mixin sectionSpacing($verticalPadding) {
+		padding: $verticalPadding 24px;
+	}
+
 	.bannerImage {
 		max-width: 600px;
 	}
 
 	.headingSection {
+		@include sectionSpacing(64px);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		padding: 64px 24px;
 		gap: 24px;
 	}
 
@@ -52,7 +66,11 @@
 	}
 
 	.aboutMeSection {
-		padding: 12px 24px;
+		@include sectionSpacing(24px);
+	}
+
+	.workHistorySection {
+		@include sectionSpacing(24px);
 	}
 
 	@media (min-width: 600px) {
