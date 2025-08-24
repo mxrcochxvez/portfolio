@@ -1,11 +1,6 @@
 <template>
-	<nav class="p-6 flex justify-between border-b border-white">
-		<h1
-			:class="[underlineOnHover, 'cursor-pointer']"
-			role="link"
-			@click="$router.push('/')"
-			@keydown.enter.space="$router.push('/')"
-		>Marco Chavez</h1>
+	<nav class="p-6 flex justify-between border-b border-white bg-violet-950 text-white">
+		<NuxtLink :class="[underlineOnHover, 'cursor-pointer text-2xl']" to="/">Marco Chavez</NuxtLink>
 
 		<ul>
 			<li>
