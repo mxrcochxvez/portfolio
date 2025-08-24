@@ -21,18 +21,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Node + PNPM (with cache)
+      # Install PNPM *before* using it
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: false
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-          run_install: false  # we'll install in the next step
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -42,30 +42,17 @@ jobs:
         with:
           static_site_generator: nuxt
 
-      # (Optional) restore Nuxt build cache
-      - name: Restore Nuxt cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            .nuxt
-            node_modules/.cache
-          key: ${{ runner.os }}-nuxt-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-nuxt-
-
       - name: Generate static site
         run: pnpm run generate
 
-      # IMPORTANT:
-      # - Nuxt 2: output is "dist/"
-      # - Nuxt 3: output is ".output/public/"
-      # Set this path to match your Nuxt version.
-      - name: Upload artifact (Nuxt 3 default)
-        if: ${{ always() }}
+      # 👇 Pick the right output dir depending on Nuxt version
+      - name: Upload artifact (Nuxt 3)
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./.output/public
 
-      # If you're on Nuxt 2, use this instead:
       # - name: Upload artifact (Nuxt 2)
-      #   uses: actio
+      #   uses: actions/upload-pages-artifact@v3
+      #   with:
+      #     path: ./dist
+
