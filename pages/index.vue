@@ -1,9 +1,12 @@
 <template>
 	<section :class="[$style.headingSection, 'bg-violet-950 text-white']">
-		<img :class="$style.bannerImage" :src="bannerImageUrl" alt="Strategy. Story. Then Sales." />
+		<!-- <img :class="$style.bannerImage" :src="bannerImageUrl" alt="Strategy. Story. Then Sales." /> -->
+		 <div>
+			With over <CountUp class="text-xl underline" :start="0" :end="6" :step-ms="300" /> years in the industry
+		 </div>
 
 		<div>
-			<p>With over 6 years of experience in the industry. In jobs related to ecommerce, SaaS, and internal tooling. I am an expert in accessibility, performance, and bringing your projects to the finish line.</p>
+			<p>In jobs related to ecommerce, SaaS, and internal tooling. I am an expert in accessibility, performance, and bringing your projects to the finish line.</p>
 			<a class="text-sm underline underline-offset-4 hidden md:inline-block" href="#about-me">Read More...</a>
 		</div>
 	</section>
@@ -49,7 +52,7 @@
 	}
 
 	.headingSection {
-		@include sectionSpacing(64px);
+		@include sectionSpacing(48px);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
