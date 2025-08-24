@@ -1,5 +1,5 @@
 <template>
-  <main class="px-4 bg-violet-950 text-white">
+  <main>
     <Navbar />
     <slot />
   </main>
