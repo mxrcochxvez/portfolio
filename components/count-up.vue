@@ -12,14 +12,13 @@
 	}>(), {
 		start: 0,
 		end: 6,
-		stepMs: 200, // 0.2s per tick → ~1.2s total for 0→6
+		stepMs: 200,
 	})
 
 	const value = ref(props.start)
 	let timer: ReturnType<typeof setInterval> | null = null
 
 	onMounted(() => {
-		// Respect reduced motion: jump straight to end
 		const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 		if (prefersReduced || props.start >= props.end) {
 			value.value = props.end
