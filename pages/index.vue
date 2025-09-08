@@ -61,16 +61,29 @@
 			</div>
 		</section>
 
-		<section id="contact" class="max-w-5xl mx-auto py-16 px-4">
-			<h3 class="text-3xl font-semibold mb-6">Get in Touch</h3>
-			<p class="text-gray-700 mb-4">I’m always open to new opportunities and collaborations.</p>
+		<section id="contact" class="max-w-5xl mx-auto py-16 px-4 text-center">
+		<h3 class="text-3xl font-semibold mb-6">Get in Touch</h3>
+		<p class="text-gray-700 mb-6">
+			I’m always open to new opportunities and collaborations.
+		</p>
+		<div class="flex flex-col sm:flex-row justify-center gap-4">
 			<a
-				href="mailto:marcode.chavez.jr@gmail.com"
-				class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg shadow hover:bg-indigo-700 transition"
+			href="mailto:marcode.chavez.jr@gmail.com"
+			class="bg-indigo-600 text-white px-6 py-3 rounded-lg shadow hover:bg-indigo-700 transition"
 			>
-				Email Me
+			Email Me
 			</a>
+
+			<a
+			href="/Marco_Chavez_Jr_-_Software_Developer.pdf"
+			download
+			class="bg-gray-800 text-white px-6 py-3 rounded-lg shadow hover:bg-gray-900 transition"
+			>
+			Download Resume
+			</a>
+		</div>
 		</section>
+
 
 		<footer class="bg-gray-100 py-6 text-center text-gray-600 text-sm">
 			© {{ new Date().getFullYear() }} Marco Chavez Jr. All rights reserved.
