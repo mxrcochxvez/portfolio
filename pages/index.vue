@@ -61,6 +61,8 @@
 			</div>
 		</section>
 
+		<Chat />
+
 		<section id="contact" class="max-w-5xl mx-auto py-16 px-4 text-center">
 		<h3 class="text-3xl font-semibold mb-6">Get in Touch</h3>
 		<p class="text-gray-700 mb-6">
