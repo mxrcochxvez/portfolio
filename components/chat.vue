@@ -1,6 +1,7 @@
 <template>
 	<section id="chat" class="bg-gray-50 py-16 px-4">
 		<div class="max-w-3xl mx-auto">
+			<div class="p-2 my-4 bg-orange-100 rounded-md text-center outline outline-orange-500">⚠️ This is under construction and will likely not produce any meaningful data ⚠️</div>
 			<h3 class="text-3xl font-semibold mb-6 text-center">Chat with My Resume</h3>
 			<p class="text-gray-600 mb-6 text-center">
 				Curious if I’m a fit for your team? Ask me questions directly here.
@@ -44,6 +45,8 @@
 					Send
 				</button>
 			</div>
+
+			<div class="p-2 my-4 bg-orange-100 rounded-md text-center outline outline-orange-500">⚠️ This is under construction and will likely not produce any meaningful data ⚠️</div>
 		</div>
 	</section>
 </template>
