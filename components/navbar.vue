@@ -1,17 +1,12 @@
 <template>
-	<nav class="p-6 flex justify-between border-b border-white bg-violet-950 text-white">
-		<NuxtLink :class="[underlineOnHover, 'cursor-pointer text-2xl']" to="/">Marco Chavez</NuxtLink>
-
-		<ul>
-			<li>
-				<NuxtLink :class="underlineOnHover" to="/">
-					Home
-				</NuxtLink>
-			</li>
-		</ul>
-	</nav>
+	<header class="bg-white shadow-md sticky top-0 z-50">
+			<nav class="max-w-5xl mx-auto flex justify-between items-center p-4">
+				<h1 class="text-2xl font-bold text-indigo-600">Marco Chavez</h1>
+				<ul class="flex gap-6 text-sm font-medium">
+					<li><a href="#about" class="hover:text-indigo-600">About</a></li>
+					<li><a href="#projects" class="hover:text-indigo-600">Projects</a></li>
+					<li><a href="#contact" class="hover:text-indigo-600">Contact</a></li>
+				</ul>
+			</nav>
+		</header>
 </template>
-
-<script lang="ts" setup>
-	const underlineOnHover = 'transition duration-300 ease-in-out hover:underline underline-offset-4';
-</script>
