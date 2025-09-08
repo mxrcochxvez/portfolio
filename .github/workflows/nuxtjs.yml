@@ -41,6 +41,7 @@ jobs:
         env:
           # If using a project page: https://<user>.github.io/<repo>/
           # This ensures assets load from /<repo>/_nuxt/*
+          VITE_HF_API_KEY: ${{ secrets.HF_API_KEY }}
           NUXT_APP_BASE_URL: "/${{ github.event.repository.name }}/"
         run: pnpm exec nuxt build --preset github_pages
 
