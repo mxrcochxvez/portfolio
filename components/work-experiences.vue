@@ -1,29 +1,29 @@
 <template>
-	<section id="experience" class="bg-white py-16 px-4">
+	<section id="experience" class="bg-white dark:bg-gray-900 py-16 px-4 transition-colors duration-300">
 		<div class="max-w-5xl mx-auto">
 			<h3 class="text-3xl font-semibold mb-12 text-center">Work Experience</h3>
 
 			<div class="relative">
-				<div class="hidden md:block absolute inset-y-0 left-1/2 w-px bg-gray-300 -translate-x-1/2"></div>
+				<div
+					class="hidden md:block absolute inset-y-0 left-1/2 w-px bg-gray-300 dark:bg-gray-700 -translate-x-1/2">
+				</div>
 
 				<div v-for="(job, i) in jobs" :key="i" class="relative mb-12 md:mb-16">
-
 					<span
-						class="hidden md:block absolute top-4 left-1/2 -translate-x-1/2 w-4 h-4 bg-indigo-600 rounded-full ring-4 ring-white"
-					></span>
+						class="hidden md:block absolute top-4 left-1/2 -translate-x-1/2 w-4 h-4 bg-indigo-600 rounded-full ring-4 ring-white dark:ring-gray-900"></span>
 
-					<div
-						:class="[
-							'p-6 bg-gray-50 rounded-xl shadow hover:shadow-md transition',
-							'md:w-1/2',
-							i % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'
-						]"
-					>
-						<h4 class="text-xl font-bold text-gray-800">
+					<div :class="[
+						'p-6 bg-gray-50 dark:bg-gray-800 rounded-xl shadow hover:shadow-md transition-colors duration-300',
+						'md:w-1/2',
+						i % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'
+					]">
+						<h4 class="text-xl font-bold text-gray-800 dark:text-gray-100">
 							{{ job.title }} - {{ job.company }}
 						</h4>
-						<p class="text-sm text-gray-500">{{ job.dates }} | {{ job.location }}</p>
-						<ul class="list-disc list-inside mt-3 text-gray-700 space-y-1">
+						<p class="text-sm text-gray-500 dark:text-gray-400">
+							{{ job.dates }} | {{ job.location }}
+						</p>
+						<ul class="list-disc list-inside mt-3 text-gray-700 dark:text-gray-300 space-y-1">
 							<li v-for="(point, j) in job.points" :key="j">{{ point }}</li>
 						</ul>
 					</div>
