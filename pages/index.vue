@@ -15,6 +15,8 @@
 			</a>
 		</section>
 
+		<SkillsHeatmap />
+
 		<section class="bg-white py-16 px-4">
 			<div class="max-w-5xl mx-auto text-center">
 				<h3 class="text-3xl font-semibold mb-8">Career Highlights</h3>
