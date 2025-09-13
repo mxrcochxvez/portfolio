@@ -9,10 +9,17 @@
 				6+ years leading modernization of SaaS, e-commerce, and mobile platforms.
 				Proven record of increasing conversions, reducing workflows, and mentoring high-output dev teams.
 			</p>
-			<a href="#projects"
-				class="mt-6 inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg shadow hover:bg-indigo-700 transition">
-				View My Work
-			</a>
+			<div class="flex gap-2 justify-center">
+				<a href="#projects"
+					class="mt-6 inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg shadow hover:bg-indigo-700 transition">
+					View My Work
+				</a>
+				<a href="https://calendar.app.google/6e6e3UNCBFGmeNea6"
+					target="_blank"
+					class="mt-6 inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg shadow hover:bg-indigo-700 transition">
+					📆 Book a 15-minute call 📆
+				</a>
+			</div>
 		</section>
 
 		<SkillsHeatmap />
