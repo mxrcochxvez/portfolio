@@ -48,7 +48,7 @@
 
 		<WorkExperiences />
 
-		<section class="bg-gray-50 dark:bg-gray-900 py-16 px-4 transition-colors duration-300">
+		<section class="bg-white dark:bg-gray-900 py-16 px-4 transition-colors duration-300">
 			<div class="max-w-5xl mx-auto">
 				<h3 class="text-3xl font-semibold mb-8">Leadership & Mentorship</h3>
 				<ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -58,6 +58,8 @@
 				</ul>
 			</div>
 		</section>
+
+		<Chat />
 
 		<section id="projects" class="bg-gray-50 dark:bg-gray-900 py-16 px-4 transition-colors duration-300">
 			<div class="max-w-5xl mx-auto">
@@ -127,6 +129,10 @@
 </template>
 
 <script lang="ts" setup>
+	import Chat from '~/components/chat.vue';
+	import SkillsHeatmap from '~/components/skills-heatmap.vue';
+	import WorkExperiences from '~/components/work-experiences.vue';
+
 	onMounted(async () => {
 		const { data } = await useFetch<{ status: string }>('/api/health-check');
 

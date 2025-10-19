@@ -1,22 +1,32 @@
 <template>
-	<section id="chat" class="bg-gray-50 py-16 px-4">
-		<div class="max-w-3xl mx-auto">
-			<div class="p-2 my-4 bg-orange-100 rounded-md text-center outline outline-orange-500">⚠️ This is under construction and will likely not produce any meaningful data ⚠️</div>
+	<section id="chat" class="py-16 px-4 bg-gray-300 dark:bg-gray-800">
+		<div class="max-w-3xl mx-auto text-gray-900 dark:text-gray-100">
 			<h3 class="text-3xl font-semibold mb-6 text-center">Chat with My Resume</h3>
-			<p class="text-gray-600 mb-6 text-center">
+			<p class="text-gray-600 dark:text-gray-300 mb-6 text-center">
 				Curious if I’m a fit for your team? Ask me questions directly here.
 			</p>
 
 			<!-- Chat window -->
-			<div class="border rounded-xl bg-white shadow p-4 h-96 overflow-y-auto mb-4">
+			<div
+				class="border rounded-xl shadow p-4 h-96 overflow-y-auto mb-4
+               bg-white dark:bg-gray-800
+               border-gray-200 dark:border-gray-700">
 				<div v-for="(msg, i) in messages" :key="i" class="mb-3">
+					<!-- user -->
 					<div v-if="msg.sender === 'user'" class="text-right">
-						<p class="inline-block bg-indigo-600 text-white px-3 py-2 rounded-lg">
+						<p class="inline-block max-w-[85%] break-words
+                       bg-indigo-600 text-white
+                       dark:bg-indigo-500
+                       px-3 py-2 rounded-lg">
 							{{ msg.text }}
 						</p>
 					</div>
+					<!-- bot -->
 					<div v-else class="text-left">
-						<p class="inline-block bg-gray-200 text-gray-800 px-3 py-2 rounded-lg">
+						<p class="inline-block max-w-[85%] break-words
+                       bg-gray-200 text-gray-900
+                       dark:bg-gray-700 dark:text-gray-100
+                       px-3 py-2 rounded-lg">
 							{{ msg.text }}
 						</p>
 					</div>
@@ -24,7 +34,9 @@
 
 				<!-- Typing indicator -->
 				<div v-if="isTyping" class="text-left">
-					<p class="inline-block bg-gray-200 text-gray-600 px-3 py-2 rounded-lg italic animate-pulse">
+					<p class="inline-block px-3 py-2 rounded-lg italic animate-pulse
+                     bg-gray-200 text-gray-600
+                     dark:bg-gray-700 dark:text-gray-300">
 						Marco’s Assistant is typing…
 					</p>
 				</div>
@@ -36,76 +48,54 @@
 					v-model="input"
 					@keyup.enter="sendMessage"
 					placeholder="Ask me about my experience..."
-					class="flex-1 border rounded-l-lg px-3 py-2 focus:outline-none"
+					class="flex-1 px-3 py-2 rounded-l-lg border
+	                 bg-white text-gray-900 placeholder-gray-500
+	                 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-400
+	                 border-gray-300 dark:border-gray-600
+	                 focus:outline-none focus:ring-2 focus:ring-indigo-500"
 				/>
 				<button
 					@click="sendMessage"
-					class="bg-indigo-600 text-white px-4 rounded-r-lg hover:bg-indigo-700"
+					class="px-4 rounded-r-lg text-white
+	                 bg-indigo-600 hover:bg-indigo-700
+	                 dark:bg-indigo-500 dark:hover:bg-indigo-600
+	                 focus:outline-none focus:ring-2 focus:ring-indigo-500"
 				>
 					Send
 				</button>
 			</div>
-
-			<div class="p-2 my-4 bg-orange-100 rounded-md text-center outline outline-orange-500">⚠️ This is under construction and will likely not produce any meaningful data ⚠️</div>
 		</div>
 	</section>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { pipeline } from "@xenova/transformers";
+	import { ref } from 'vue'
+	import { useMarcoBot } from '~/composables/useMarcoBot'
 
-interface Message {
-	sender: "user" | "bot";
-	text: string;
-}
+	interface Message { sender: 'user' | 'bot'; text: string }
 
-const messages = ref<Message[]>([
-	{ sender: "bot", text: "Hi, I’m Marco’s portfolio assistant! Ask me about his work experience or skills." }
-]);
-const input = ref("");
-const isTyping = ref(false);
+	const { getAnswer } = useMarcoBot()
 
-// Initialize generator
-let generator: any = null;
+	const messages = ref<Message[]>([
+		{ sender: 'bot', text: "Hi, I’m Marco’s portfolio assistant! Ask me about his work experience or skills." }
+	])
+	const input = ref('')
+	const isTyping = ref(false)
 
-async function loadModel() {
-	if (!generator) {
-		// First time: load the model (downloads weights into browser cache)
-		generator = await pipeline("text-generation", "Xenova/distilgpt2");
+	async function sendMessage() {
+		if (!input.value.trim()) return
+		const userMessage = input.value
+		messages.value.push({ sender: 'user', text: userMessage })
+		input.value = ''
+		isTyping.value = true
+		try {
+			const reply = await getAnswer(userMessage)
+			messages.value.push({ sender: 'bot', text: reply })
+		} catch (err) {
+			console.error(err)
+			messages.value.push({ sender: 'bot', text: 'Sorry, something went wrong while getting the answer.' })
+		} finally {
+			isTyping.value = false
+		}
 	}
-	return generator;
-}
-
-async function askLLM(prompt: string): Promise<string> {
-	const generator = await loadModel();
-	const output = await generator(prompt, {
-		max_new_tokens: 60,
-		temperature: 0.7,
-		top_p: 0.9
-	});
-	return output[0].generated_text;
-}
-
-async function sendMessage() {
-	if (!input.value.trim()) return;
-
-	const userMessage = input.value;
-	messages.value.push({ sender: "user", text: userMessage });
-	input.value = "";
-	isTyping.value = true;
-
-	try {
-		const reply = await askLLM(userMessage);
-		messages.value.push({ sender: "bot", text: reply });
-	} catch (err) {
-		console.error(err);
-		messages.value.push({
-			sender: "bot",
-			text: "Error running the local model."
-		});
-	} finally {
-		isTyping.value = false;
-	}
-}
 </script>

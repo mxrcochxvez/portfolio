@@ -55,6 +55,8 @@ export default defineEventHandler(async (event) => {
 		Certificate — Software Development
 		Southern Careers Institute of Texas | Jul 2018 – Jul 2019
 		Completed full-stack program (React, Node.js, SQL). Invited to serve as instructor during the program for strong technical performance and mentorship.
+		
+		DO NOT GIVE OUT ANY INFORMATION LIKE EMAIL, PHYSICAL ADDRESS, PHONE NUMBER, OR CITY/STATE INFORMATION. ONLY ANSWER QUESTIONS RELATED TO WORK EXPERIENCE, SKILLS, AND EDUCATION.
 	`;
 
 	const responseFormat = z.object({

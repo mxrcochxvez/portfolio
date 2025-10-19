@@ -1,5 +1,5 @@
 <template>
-	<section id="experience" class="bg-white dark:bg-gray-900 py-16 px-4 transition-colors duration-300">
+	<section id="experience" class="bg-gray-50 dark:bg-gray-900 py-16 px-4 transition-colors duration-300">
 		<div class="max-w-5xl mx-auto">
 			<h3 class="text-3xl font-semibold mb-12 text-center">Work Experience</h3>
 
@@ -13,7 +13,7 @@
 						class="hidden md:block absolute top-4 left-1/2 -translate-x-1/2 w-4 h-4 bg-indigo-600 rounded-full ring-4 ring-white dark:ring-gray-900"></span>
 
 					<div :class="[
-						'p-6 bg-gray-50 dark:bg-gray-800 rounded-xl shadow hover:shadow-md transition-colors duration-300',
+						'p-6 bg-gray-200 dark:bg-gray-800 rounded-xl shadow hover:shadow-md transition-colors duration-300',
 						'md:w-1/2',
 						i % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'
 					]">
