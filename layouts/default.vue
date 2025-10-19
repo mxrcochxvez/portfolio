@@ -1,10 +1,11 @@
 <template>
-  <main>
-    <Navbar />
-    <slot />
-  </main>
+	<main>
+		<Navbar />
+		<slot />
+		<ApiStatus />
+	</main>
 </template>
 
-<script lang="ts" setup>
-  import Navbar from '~/components/navbar.vue';
+<script setup lang="ts">
+	import ApiStatus from '~/components/api-status.vue';
 </script>

@@ -125,3 +125,11 @@
 		</footer>
 	</div>
 </template>
+
+<script lang="ts" setup>
+	onMounted(async () => {
+		const { data } = await useFetch<{ status: string }>('/api/health-check');
+
+		console.log('API Response:', JSON.stringify(data.value?.status));
+	});
+</script>
