@@ -1,6 +1,4 @@
 export function useMarcoBot() {
-	const config = useRuntimeConfig();
-
 	/**
 	 * Ask the Marco Bot a question.
 	 * @param question - The user's question to send to the API
