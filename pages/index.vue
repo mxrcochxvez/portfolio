@@ -59,7 +59,7 @@
 			</div>
 		</section>
 
-		<Chat />
+		<!-- <Chat /> -->
 
 		<section id="projects" class="bg-gray-50 dark:bg-gray-900 py-16 px-4 transition-colors duration-300">
 			<div class="max-w-5xl mx-auto">

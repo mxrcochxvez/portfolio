@@ -1,5 +1,5 @@
 <template>
-	<section id="chat" class="py-16 px-4 bg-gray-300 dark:bg-gray-800">
+	<section id="chat">
 		<div class="max-w-3xl mx-auto text-gray-900 dark:text-gray-100">
 			<h3 class="text-3xl font-semibold mb-6 text-center">Chat with My Resume</h3>
 			<p class="text-gray-600 dark:text-gray-300 mb-6 text-center">
@@ -8,7 +8,7 @@
 
 			<!-- Chat window -->
 			<div
-				class="border rounded-xl shadow p-4 h-96 overflow-y-auto mb-4
+				class="border rounded-xl shadow p-4 h-80 overflow-y-auto mb-4
                bg-white dark:bg-gray-800
                border-gray-200 dark:border-gray-700">
 				<div v-for="(msg, i) in messages" :key="i" class="mb-3">
