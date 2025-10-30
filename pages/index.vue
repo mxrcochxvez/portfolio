@@ -133,6 +133,20 @@
 	import SkillsHeatmap from '~/components/skills-heatmap.vue';
 	import WorkExperiences from '~/components/work-experiences.vue';
 
+	const config = useRuntimeConfig()
+	const siteUrl = config.public.siteUrl
+
+	useSeoMeta({
+		title: 'Marco Chavez Jr — Senior Full‑Stack Engineer | TypeScript, Nuxt, Node.js',
+		description: 'Senior Full‑Stack Engineer specializing in TypeScript, Nuxt, and Node.js. 6+ years building scalable, accessible products that improve performance, conversions, and team velocity.',
+		ogTitle: 'Marco Chavez Jr — Senior Full‑Stack Engineer | TypeScript, Nuxt, Node.js',
+		ogDescription: 'Senior Full‑Stack Engineer specializing in TypeScript, Nuxt, and Node.js. 6+ years building scalable, accessible products that improve performance, conversions, and team velocity.',
+		twitterCard: 'summary_large_image',
+		
+	})
+
+	useHead({ link: [{ rel: 'canonical', href: siteUrl }] })
+
 	onMounted(async () => {
 		const { data } = await useFetch<{ status: string }>('/api/health-check');
 
