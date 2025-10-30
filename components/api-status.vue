@@ -2,16 +2,16 @@
 	<Suspense>
 		<template #default>
 			<div v-if="data?.status" class="fixed bottom-4 right-4 bg-green-200 text-green-800 py-2 px-4 rounded-full">
-				API status: {{ data.status }}
+				Marcobot status: {{ data.status }}
 			</div>
 			<div v-else-if="error" class="fixed bottom-4 right-4 bg-red-200 text-red-800 py-2 px-4 rounded-full">
-				API Down
+				Marcobot is down
 			</div>
 		</template>
 
 		<template #fallback>
 			<div class="fixed bottom-4 right-4 bg-yellow-200 text-yellow-800 py-2 px-4 rounded-full">
-				Checking API status...
+				Checking Marcobot status...
 			</div>
 		</template>
 	</Suspense>
