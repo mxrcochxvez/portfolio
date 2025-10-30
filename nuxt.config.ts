@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
 	compatibilityDate: '2024-11-01',
 	devtools: { enabled: true },
-	modules: ['@nuxt/fonts', '@nuxt/icon', '@nuxtjs/tailwindcss'],
+        modules: ['@nuxt/fonts', '@nuxt/icon', '@nuxtjs/tailwindcss', '@nuxt/content'],
 	tailwindcss: {
 		config: {
 			darkMode: 'class'
