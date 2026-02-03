@@ -9,20 +9,29 @@ const config: Config = {
 	theme: {
 		extend: {
 			colors: {
-				blueprint: {
-					bg: "#1a3a5c",
-					"bg-light": "#2a4a6c",
-					grid: "#3a5a7c",
-					text: "#ffffff",
-					"text-dim": "#c8d8e8",
-					accent: "#1e90ff", // dodgerblue
-					"accent-light": "#4aa8ff",
+				premium: {
+					bg: "#050505", // Deepest obsidian
+					card: "#0a0a0a", // Charcoal
+					"card-hover": "#111111",
+					border: "#222222",
+					text: "#e0e0e0", // Silver-white
+					"text-dim": "#888888", // Muted silver
+					accent: "#2962ff", // Electric Blue (BMW-like)
+					"accent-dark": "#0039cb",
+					glow: "rgba(41, 98, 255, 0.5)",
 				},
 			},
 			fontFamily: {
-				sketch: ["Architects Daughter", "cursive"],
-				mono: ["JetBrains Mono", "monospace"],
+				sans: ["var(--font-inter)", "sans-serif"],
+				mono: ["var(--font-jetbrains)", "monospace"],
 			},
+			backgroundImage: {
+				"metal-gradient": "linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%)",
+				"shine": "linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.05) 50%, transparent 75%)",
+			},
+			boxShadow: {
+				"glow": "0 0 20px -5px rgba(41, 98, 255, 0.3)",
+			}
 		},
 	},
 	plugins: [],

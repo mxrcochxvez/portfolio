@@ -32,6 +32,7 @@ export default function ProjectDiscoveryChat() {
 	const [isSending, setIsSending] = useState(false);
 	const [proposalSent, setProposalSent] = useState(false);
 	const messagesEndRef = useRef<HTMLDivElement>(null);
+	const initializationAttempted = useRef(false);
 
 	const scrollToBottom = () => {
 		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -42,7 +43,10 @@ export default function ProjectDiscoveryChat() {
 	}, [messages]);
 
 	useEffect(() => {
-		startConversation();
+		if (!initializationAttempted.current) {
+			initializationAttempted.current = true;
+			startConversation();
+		}
 	}, []);
 
 	async function startConversation() {
@@ -53,6 +57,9 @@ export default function ProjectDiscoveryChat() {
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({}),
 			});
+			
+			if (!response.ok) throw new Error("API request failed");
+			
 			const data = await response.json();
 			setConversationState(data.state);
 			setProgress(data.progress || 0);
@@ -68,7 +75,8 @@ export default function ProjectDiscoveryChat() {
 			setMessages([
 				{
 					sender: "bot",
-					text: "Sorry, I couldn't start the discovery process. Please try again or contact Marco directly.",
+					text: "System initialized. Ready to discuss your project requirements.",
+					quickOptions: ["Start Project Discovery"],
 				},
 			]);
 		} finally {
@@ -120,7 +128,7 @@ export default function ProjectDiscoveryChat() {
 			console.error("Failed to send message:", error);
 			setMessages((prev) => [
 				...prev,
-				{ sender: "bot", text: "Something went wrong. Please try again." },
+				{ sender: "bot", text: "Connection interrupted. Please try again." },
 			]);
 		} finally {
 			setIsTyping(false);
@@ -148,7 +156,7 @@ export default function ProjectDiscoveryChat() {
 					...prev,
 					{
 						sender: "bot",
-						text: "✅ **Proposal sent successfully!** Marco has received your project details and will get back to you within 24-48 hours. Check your email for a copy of the proposal!",
+						text: "✅ **Proposal Generated & Sent.** I will review the architecture and timeline and contact you within 24 hours.",
 					},
 				]);
 			} else {
@@ -156,7 +164,7 @@ export default function ProjectDiscoveryChat() {
 					...prev,
 					{
 						sender: "bot",
-						text: `❌ ${data.error || "Failed to send proposal. Please try again or contact Marco directly."}`,
+						text: `Error: ${data.error || "Transmission failed."}`,
 					},
 				]);
 			}
@@ -166,7 +174,7 @@ export default function ProjectDiscoveryChat() {
 				...prev,
 				{
 					sender: "bot",
-					text: "Failed to send proposal. Please try again or contact Marco directly at marcode.chavez.jr@gmail.com",
+					text: "Critical error. Please email directly: hello@marcochavez.work",
 				},
 			]);
 		} finally {
@@ -186,111 +194,123 @@ export default function ProjectDiscoveryChat() {
 	}
 
 	return (
-		<section id="project-discovery" className="h-full flex flex-col">
-			<h3 className="text-xl font-sketch mb-2 text-center text-blueprint-accent">
-				🚀 Start Your Project
-			</h3>
-
-			{/* Progress Bar */}
-			<div className="mb-4">
-				<div className="flex justify-between text-xs text-blueprint-text-dim mb-1">
-					<span>Progress</span>
-					<span>{progress}%</span>
+		<div className="w-full max-w-3xl mx-auto backdrop-blur-xl bg-premium-card/80 border border-premium-border rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[600px]">
+			{/* Header */}
+			<div className="p-4 border-b border-premium-border bg-black/40 flex justify-between items-center">
+				<div className="flex items-center gap-3">
+					<div className="w-3 h-3 rounded-full bg-premium-accent animate-pulse" />
+					<span className="text-sm font-mono text-premium-text-dim uppercase tracking-wider">
+						Project Initialization Protocol
+					</span>
 				</div>
-				<div className="h-2 bg-blueprint-bg rounded-full overflow-hidden border border-blueprint-grid">
-					<div
-						className="h-full bg-blueprint-accent transition-all duration-500 ease-out"
-						style={{ width: `${progress}%` }}
-					/>
+				<div className="text-xs font-mono text-premium-text-dim">
+					{progress}% Complete
 				</div>
+			</div>
+			
+			{/* Progress Line */}
+			<div className="h-0.5 bg-premium-border w-full">
+				<div 
+					className="h-full bg-premium-accent shadow-[0_0_10px_theme(colors.premium.accent)] transition-all duration-500 ease-out"
+					style={{ width: `${progress}%` }}
+				/>
 			</div>
 
 			{/* Chat window */}
-			<div className="flex-1 overflow-y-auto mb-4 p-3 border-2 border-dashed border-blueprint-grid rounded bg-blueprint-bg/50">
+			<div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide">
 				{messages.map((msg, i) => (
-					<div key={i} className={`mb-3 ${msg.sender === "user" ? "text-right" : "text-left"}`}>
+					<div key={i} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
 						<div
-							className={`inline-block max-w-[85%] break-words px-3 py-2 rounded-lg text-sm font-mono ${
+							className={`max-w-[85%] px-5 py-4 rounded-2xl text-sm leading-relaxed ${
 								msg.sender === "user"
-									? "bg-blueprint-accent text-blueprint-bg"
-									: "bg-blueprint-bg-light border border-dashed border-blueprint-text-dim text-blueprint-text"
+									? "bg-premium-accent text-white rounded-br-none shadow-glow"
+									: "bg-white/5 border border-white/10 text-premium-text rounded-bl-none"
 							}`}
-							style={{ whiteSpace: "pre-wrap" }}
-							dangerouslySetInnerHTML={{
-								__html: msg.text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>"),
-							}}
-						/>
-
-						{/* Quick Options */}
-						{msg.sender === "bot" && msg.quickOptions && msg.quickOptions.length > 0 && i === messages.length - 1 && !isComplete && (
-							<div className="mt-2 flex flex-wrap gap-2">
-								{msg.quickOptions.map((option, j) => (
-									<button
-										key={j}
-										onClick={() => sendMessage(option)}
-										className="px-3 py-1 text-xs font-mono bg-blueprint-bg border border-blueprint-accent text-blueprint-accent rounded hover:bg-blueprint-accent hover:text-blueprint-bg transition-all"
-									>
-										{option}
-									</button>
-								))}
-							</div>
-						)}
+						>
+							<div
+								dangerouslySetInnerHTML={{
+									__html: msg.text.replace(/\*\*(.*?)\*\*/g, "<strong class='text-white'>$1</strong>"),
+								}}
+							/>
+							
+							{/* Quick Options */}
+							{msg.sender === "bot" && msg.quickOptions && msg.quickOptions.length > 0 && i === messages.length - 1 && !isComplete && (
+								<div className="mt-4 flex flex-wrap gap-2">
+									{msg.quickOptions.map((option, j) => (
+										<button
+											key={j}
+											onClick={() => sendMessage(option)}
+											className="px-4 py-2 text-xs font-medium bg-black/60 border border-premium-accent/50 text-premium-accent rounded-lg hover:bg-premium-accent hover:text-white transition-all duration-300"
+										>
+											{option}
+										</button>
+									))}
+								</div>
+							)}
+						</div>
 					</div>
 				))}
 
 				{isTyping && (
-					<div className="text-left">
-						<p className="inline-block px-3 py-2 rounded-lg italic animate-pulse bg-blueprint-bg-light text-blueprint-text-dim text-sm">
-							Thinking…
-						</p>
+					<div className="flex justify-start">
+						<div className="px-5 py-4 bg-white/5 border border-white/10 rounded-2xl rounded-bl-none">
+							<div className="flex gap-1.5">
+								<span className="w-2 h-2 rounded-full bg-premium-text-dim animate-bounce" />
+								<span className="w-2 h-2 rounded-full bg-premium-text-dim animate-bounce delay-100" />
+								<span className="w-2 h-2 rounded-full bg-premium-text-dim animate-bounce delay-200" />
+							</div>
+						</div>
 					</div>
 				)}
 
 				<div ref={messagesEndRef} />
 			</div>
 
-			{/* Action buttons for complete state */}
-			{isComplete && !proposalSent && (
-				<div className="flex gap-2 mb-4">
-					<button
-						onClick={sendProposal}
-						disabled={isSending}
-						className="flex-1 blueprint-btn blueprint-btn-primary text-sm disabled:opacity-50"
+			{/* Controls */}
+			<div className="p-4 border-t border-premium-border bg-black/40">
+				{isComplete && !proposalSent ? (
+					<div className="flex gap-4">
+						<button
+							onClick={sendProposal}
+							disabled={isSending}
+							className="flex-1 py-3 px-6 bg-premium-accent text-white font-bold rounded-xl hover:bg-premium-accent-dark hover:shadow-glow transition-all disabled:opacity-50"
+						>
+							{isSending ? "Initialising Upload..." : "Send Proposal"}
+						</button>
+						<button 
+							onClick={resetConversation}
+							className="px-6 py-3 text-premium-text-dim hover:text-white transition-colors"
+						>
+							Reset
+						</button>
+					</div>
+				) : proposalSent ? (
+					<button 
+						onClick={resetConversation}
+						className="w-full py-3 px-6 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition-all"
 					>
-						{isSending ? "Sending..." : "📤 Send Proposal"}
+						Initialize New Project
 					</button>
-					<button onClick={resetConversation} className="blueprint-btn text-sm">
-						🔄 Start Over
-					</button>
-				</div>
-			)}
-
-			{proposalSent && (
-				<div className="mb-4">
-					<button onClick={resetConversation} className="w-full blueprint-btn text-sm">
-						🚀 Submit Another Project
-					</button>
-				</div>
-			)}
-
-			{/* Input */}
-			{!isComplete && (
-				<div className="flex gap-2">
-					<input
-						value={input}
-						onChange={(e) => setInput(e.target.value)}
-						onKeyUp={(e) => e.key === "Enter" && sendMessage()}
-						placeholder="Type your response..."
-						className="flex-1 px-3 py-2 rounded border-2 border-dashed border-blueprint-grid
-                     bg-blueprint-bg text-blueprint-text placeholder-blueprint-text-dim
-                     focus:outline-none focus:border-blueprint-accent focus:shadow-glow-sm
-                     font-mono text-sm transition-all duration-300"
-					/>
-					<button onClick={() => sendMessage()} disabled={isTyping} className="blueprint-btn text-sm">
-						Send
-					</button>
-				</div>
-			)}
-		</section>
+				) : (
+					<div className="flex gap-3">
+						<input
+							value={input}
+							onChange={(e) => setInput(e.target.value)}
+							onKeyUp={(e) => e.key === "Enter" && sendMessage()}
+							placeholder="Type your requirements..."
+							className="flex-1 px-4 py-3 bg-black/50 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-premium-accent focus:ring-1 focus:ring-premium-accent transition-all"
+							disabled={isTyping}
+						/>
+						<button 
+							onClick={() => sendMessage()} 
+							disabled={isTyping || !input.trim()}
+							className="px-6 py-3 bg-white text-black font-bold rounded-xl hover:scale-105 active:scale-95 transition-all disabled:opacity-50 disabled:scale-100"
+						>
+							Send
+						</button>
+					</div>
+				)}
+			</div>
+		</div>
 	);
 }

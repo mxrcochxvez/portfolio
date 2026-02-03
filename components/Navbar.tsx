@@ -1,109 +1,60 @@
 "use client";
 
-import { useState } from "react";
-import DarkModeToggle from "./DarkModeToggle";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
-export default function Navbar() {
-	const [menuOpen, setMenuOpen] = useState(false);
+const Navbar = () => {
+	const [scrolled, setScrolled] = useState(false);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			setScrolled(window.scrollY > 20);
+		};
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
 
 	return (
-		<header className="bg-blueprint-bg/90 backdrop-blur-sm border-b-2 border-dashed border-blueprint-grid sticky top-0 z-50">
-			<nav className="max-w-5xl mx-auto flex justify-between items-center p-3 md:p-4">
-				<h1 className="text-xl md:text-2xl font-sketch text-blueprint-accent">
-					Marco Chavez
-				</h1>
-
-				{/* Mobile menu button */}
-				<button
-					className="md:hidden text-blueprint-text p-2"
-					onClick={() => setMenuOpen(!menuOpen)}
-					aria-label="Toggle menu"
+		<nav
+			className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
+				scrolled
+					? "bg-premium-bg/80 backdrop-blur-xl border-premium-border/50 py-4"
+					: "bg-transparent border-transparent py-6"
+			}`}
+		>
+			<div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+				<Link
+					href="/"
+					className="text-2xl font-bold tracking-tighter text-white hover:opacity-80 transition-opacity"
 				>
-					<span className="text-xl">{menuOpen ? "✕" : "☰"}</span>
-				</button>
+					MARCO<span className="text-premium-accent">.</span>CHAVEZ
+				</Link>
 
-				{/* Desktop nav */}
-				<ul className="hidden md:flex gap-6 text-sm font-mono">
-					<li>
-						<a
-							href="#services"
-							className="text-blueprint-text-dim hover:text-blueprint-accent transition-colors"
-						>
-							Services
-						</a>
-					</li>
-					<li>
-						<a
-							href="#experience"
-							className="text-blueprint-text-dim hover:text-blueprint-accent transition-colors"
-						>
-							Experience
-						</a>
-					</li>
-					<li>
-						<a
-							href="#projects"
-							className="text-blueprint-text-dim hover:text-blueprint-accent transition-colors"
-						>
-							Projects
-						</a>
-					</li>
-					<li>
-						<a
-							href="#contact"
-							className="text-blueprint-text-dim hover:text-blueprint-accent transition-colors"
-						>
-							Contact
-						</a>
-					</li>
-				</ul>
-			</nav>
-
-			{/* Mobile nav dropdown */}
-			{menuOpen && (
-				<div className="md:hidden border-t border-dashed border-blueprint-grid bg-blueprint-bg/95">
-					<ul className="flex flex-col p-4 gap-4 text-sm font-mono">
-						<li>
-							<a
-								href="#services"
-								onClick={() => setMenuOpen(false)}
-								className="text-blueprint-text-dim hover:text-blueprint-accent"
-							>
-								Services
-							</a>
-						</li>
-						<li>
-							<a
-								href="#experience"
-								onClick={() => setMenuOpen(false)}
-								className="text-blueprint-text-dim hover:text-blueprint-accent"
-							>
-								Experience
-							</a>
-						</li>
-						<li>
-							<a
-								href="#projects"
-								onClick={() => setMenuOpen(false)}
-								className="text-blueprint-text-dim hover:text-blueprint-accent"
-							>
-								Projects
-							</a>
-						</li>
-						<li>
-							<a
-								href="#contact"
-								onClick={() => setMenuOpen(false)}
-								className="text-blueprint-text-dim hover:text-blueprint-accent"
-							>
-								Contact
-							</a>
-						</li>
-					</ul>
+				<div className="hidden md:flex items-center gap-8">
+					<NavLink href="#expertise" label="Expertise" />
+					<NavLink href="#results" label="Results" />
+					<NavLink href="#pricing" label="Pricing" />
 				</div>
-			)}
 
-			<DarkModeToggle />
-		</header>
+				<Link
+					href="#pricing"
+					className="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 bg-premium-accent rounded-full hover:bg-premium-accent-dark hover:scale-105 active:scale-95 shadow-glow"
+				>
+					Hire Me
+				</Link>
+			</div>
+		</nav>
 	);
-}
+};
+
+const NavLink = ({ href, label }: { href: string; label: string }) => (
+	<Link
+		href={href}
+		className="text-sm font-medium text-premium-text-dim hover:text-white transition-colors duration-300"
+	>
+		{label}
+	</Link>
+);
+
+export default Navbar;
