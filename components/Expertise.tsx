@@ -5,9 +5,9 @@ import React from "react";
 const Expertise = () => {
 	const expertiseAreas = [
 		{
-			title: "System Architecture",
+			title: "Beautiful Design",
 			description:
-				"Designing fault-tolerant, high-availability systems that scale effortlessly. I don't just write code; I engineer resilient digital ecosystems.",
+				"Clean, modern websites that make your business look professional and trustworthy. First impressions matter—I'll make sure yours is unforgettable.",
 			icon: (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -26,9 +26,9 @@ const Expertise = () => {
 			),
 		},
 		{
-			title: "Performance Optimization",
+			title: "Stress-Free Technology",
 			description:
-				"Obsessed with milliseconds. I optimize rendering paths, bundle sizes, and server response times to ensure instant interactivity and seamless user journeys.",
+				"No tech jargon, no complicated dashboards. I handle all the technical stuff behind the scenes so you can focus on what you do best—running your business.",
 			icon: (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -47,9 +47,9 @@ const Expertise = () => {
 			),
 		},
 		{
-			title: "Product Strategy",
+			title: "Real Business Value",
 			description:
-				"Bridging the gap between engineering and business goals. I translate complex requirements into elegant technical solutions that drive conversion and retention.",
+				"Transparent, affordable pricing with no hidden fees. You get a professional website that attracts customers and grows with your business—without breaking the bank.",
 			icon: (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -77,11 +77,11 @@ const Expertise = () => {
 			<div className="max-w-6xl mx-auto px-6 relative z-10">
 				<div className="mb-16 md:mb-24">
 					<h2 className="text-4xl md:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 tracking-tight">
-						The Last Engineer You'll Hire.
+						Your Partner in Digital Success.
 					</h2>
 					<p className="text-xl text-premium-text-dim max-w-2xl leading-relaxed">
-						I don't just build websites; I craft high-performance digital assets that command authority. 
-						My expertise isn't measured in years, but in the complexity of problems solved and revenue generated.
+						I build professional websites that help small businesses attract more customers and grow. 
+						Simple, effective, and affordable—without the complexity or stress of managing technology yourself.
 					</p>
 				</div>
 

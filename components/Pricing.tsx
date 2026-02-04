@@ -12,10 +12,10 @@ const Pricing = () => {
 			<div className="max-w-7xl mx-auto px-6 relative z-10">
 				<div className="text-center max-w-3xl mx-auto mb-20">
 					<h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-						Investing in Dominance.
+						Simple, Honest Pricing.
 					</h2>
 					<p className="text-xl text-premium-text-dim mb-8">
-						Simple, transparent, and aggressive pricing for those who understand the value of superior engineering.
+						No surprises, no hidden fees. Just straightforward pricing that makes sense for small businesses.
 					</p>
 					
 					{/* Pay Once Badge/Message */}
@@ -27,8 +27,8 @@ const Pricing = () => {
 						</div>
 					</div>
 					<p className="mt-4 text-sm text-premium-text-dim max-w-xl mx-auto">
-						Unlike agencies that bleed you with monthly retainers, I build it right the first time. 
-						<strong className="text-white ml-1">Pay once, own it forever.</strong>
+						Unlike many web designers who charge monthly fees, you pay once and own your website forever. 
+						<strong className="text-white ml-1">Clear pricing, no ongoing bills.</strong>
 					</p>
 				</div>
 
@@ -40,7 +40,7 @@ const Pricing = () => {
 						<div className="relative z-10 flex-1 flex flex-col">
 							<div className="mb-4">
 								<h3 className="text-2xl font-bold text-white mb-2">Velocity</h3>
-								<p className="text-premium-text-dim text-sm">For professional services needing instant impact.</p>
+								<p className="text-premium-text-dim text-sm">Perfect for getting your business online fast.</p>
 							</div>
 
 							<div className="mb-8">
@@ -52,11 +52,11 @@ const Pricing = () => {
 							</div>
 
 							<ul className="space-y-4 mb-8 flex-1">
-								<ListItem>Cloud Edge Hosting (Global Speed)</ListItem>
-								<ListItem>SEO-First Architecture</ListItem>
-								<ListItem>Instant Load Times</ListItem>
-								<ListItem>Mobile-First Responsive Design</ListItem>
-								<ListItem>Contact Form Integration</ListItem>
+								<ListItem>Professional Design That Converts</ListItem>
+								<ListItem>Google-Friendly for Easy Discovery</ListItem>
+								<ListItem>Fast Loading on All Devices</ListItem>
+								<ListItem>Mobile & Desktop Optimized</ListItem>
+								<ListItem>Easy Contact Form Setup</ListItem>
 							</ul>
 
 							<Link
@@ -79,7 +79,7 @@ const Pricing = () => {
 						<div className="relative z-10 flex-1 flex flex-col">
 							<div className="mb-4">
 								<h3 className="text-2xl font-bold text-white mb-2">Control</h3>
-								<p className="text-premium-text-dim text-sm">For businesses requiring management & power.</p>
+								<p className="text-premium-text-dim text-sm">For businesses that need to update content themselves.</p>
 							</div>
 
 							<div className="mb-8">
@@ -95,14 +95,14 @@ const Pricing = () => {
 
 							<ul className="space-y-4 mb-8 flex-1">
 								<ListItem active>
-									Full Admin Dashboard
+									Easy-to-Use Dashboard
 									<span className="block text-xs text-premium-text-dim font-normal mt-1 opacity-70">
 										(One-time setup fee up to $300)
 									</span>
 								</ListItem>
-								<ListItem active>User Authentication (Secure)</ListItem>
-								<ListItem>Content Management System</ListItem>
-								<ListItem>Database Integration</ListItem>
+								<ListItem active>Secure Login System</ListItem>
+								<ListItem>Update Content Anytime</ListItem>
+								<ListItem>Customer Database Integration</ListItem>
 								<ListItem>Everything in Velocity</ListItem>
 							</ul>
 
@@ -122,7 +122,7 @@ const Pricing = () => {
 						<div className="relative z-10 flex-1 flex flex-col">
 							<div className="mb-4">
 								<h3 className="text-2xl font-bold text-white mb-2">Supremacy</h3>
-								<p className="text-premium-text-dim text-sm">Complete digital partnership. Sit back and win.</p>
+								<p className="text-premium-text-dim text-sm">Complete website partnership. I handle everything.</p>
 							</div>
 
 							<div className="mb-8">
@@ -133,12 +133,12 @@ const Pricing = () => {
 							</div>
 
 							<ul className="space-y-4 mb-8 flex-1">
-								<ListItem>Unlimited Design Freedom</ListItem>
-								<ListItem>Priority Support (24/7)</ListItem>
-								<ListItem>Full Technical Management</ListItem>
-								<ListItem>Strategic Consulting</ListItem>
-								<ListItem>Custom Feature Development</ListItem>
-								<ListItem>Continuous Optimization</ListItem>
+								<ListItem>Unlimited Design Revisions</ListItem>
+								<ListItem>Dedicated Support</ListItem>
+								<ListItem>Complete Tech Management</ListItem>
+								<ListItem>Growth Strategy Consultation</ListItem>
+								<ListItem>Custom Features & Tools</ListItem>
+								<ListItem>Ongoing Updates & Improvements</ListItem>
 							</ul>
 
 							<Link

@@ -24,14 +24,14 @@ export default function Home() {
 						</div>
 						
 						<h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white mb-8 leading-[0.9]">
-							SCALE <br />
+							GROW <br />
 							<span className="text-transparent bg-clip-text bg-gradient-to-r from-premium-accent to-white">
-								YOUR VISION.
+								YOUR BUSINESS.
 							</span>
 						</h1>
 						
 						<p className="text-xl md:text-2xl text-premium-text-dim max-w-xl mb-10 leading-relaxed text-balance">
-							I help companies build high-performance digital assets that drive revenue, not just traffic.
+							Beautiful, professional websites that bring you customers—without the tech headaches.
 						</p>
 						
 						<div className="flex flex-col sm:flex-row gap-4">
@@ -56,7 +56,7 @@ export default function Home() {
 								<div className="w-8 h-8 rounded-full bg-gray-600 border-2 border-premium-bg" />
 								<div className="w-8 h-8 rounded-full bg-gray-500 border-2 border-premium-bg" />
 							</div>
-							<p>Trusted by industry leaders.</p>
+							<p>Trusted by small businesses nationwide.</p>
 						</div>
 					</div>
 					
@@ -76,14 +76,14 @@ export default function Home() {
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 						<div>
 							<h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-								Technical Excellence is Non-Negotiable.
+								Reliable. Professional. Hassle-Free.
 							</h2>
 							<p className="text-lg text-premium-text-dim mb-8">
-								Your competitors are already optimizing. I provide the technical edge that keeps you ahead. From bare-metal performance tuning to complex distributed systems.
+								I handle all the technical details so you can focus on running your business. Your website will be fast, secure, and always working when your customers need it.
 							</p>
 							
 							<div className="space-y-4">
-								{['99.9% Uptime Architectures', 'Sub-100ms Interaction Latency', 'Enterprise-Grade Security'].map((item) => (
+								{['Always-On Reliability', 'Lightning-Fast Loading', 'Bank-Level Security'].map((item) => (
 									<div key={item} className="flex items-center gap-3">
 										<div className="w-1.5 h-1.5 rounded-full bg-premium-accent" />
 										<span className="text-white font-medium">{item}</span>
